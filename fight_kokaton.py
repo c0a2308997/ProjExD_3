@@ -160,6 +160,7 @@ def main():
     beam = None  # Beam(bird)  # ビームインスタンス生成
     bombs = [Bomb((255, 0, 0), 10) for _ in range(NUM_OF_BOMBS)]
     score = Score()
+    multibeam = []
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -168,7 +169,8 @@ def main():
                 return
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 # スペースキー押下でBeamクラスのインスタンス生成
-                beam = Beam(bird)            
+                beam = Beam(bird)
+                multibeam.append(beam)  
         screen.blit(bg_img, [0, 0])
         
         for bomb in bombs:
@@ -182,7 +184,9 @@ def main():
                 time.sleep(1)
                 return
         for i, bomb in enumerate(bombs):
-            if beam is not None:
+            if beam is not None:    
+            # if multibeam is not None:
+                # for k in range(len(multibeam)):
                 if beam.rct.colliderect(bomb.rct):  # ビームが爆弾を撃ち落としたら
                     score.score += 1
                     beam = None
