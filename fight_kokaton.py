@@ -140,6 +140,10 @@ class Bomb:
         screen.blit(self.img, self.rct)
 
 class Score:
+    """
+    打ち落とした爆弾の数を表示するスコアクラス
+    
+    """
     def __init__(self):
         self.score = 0
         self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
